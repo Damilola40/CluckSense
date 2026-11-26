@@ -12,16 +12,17 @@ CluckSense listens to poultry sounds, scores how distressed the birds sound, and
 
 1. [Project overview](#project-overview)
 2. [Objectives](#objectives)
-3. [How it works](#how-it-works)
-4. [Repository structure](#repository-structure)
-5. [Installation](#installation)
-6. [Usage](#usage)
-7. [Implementation details](#implementation-details)
-8. [Results](#results)
-9. [Limitations](#limitations)
-10. [Roadmap](#roadmap)
-11. [Team and acknowledgements](#team-and-acknowledgements)
-12. [License](#license)
+3. [Dataset](#dataset)
+4. [How it works](#how-it-works)
+5. [Repository structure](#repository-structure)
+6. [Installation](#installation)
+7. [Usage](#usage)
+8. [Implementation details](#implementation-details)
+9. [Results](#results)
+10. [Limitations](#limitations)
+11. [Roadmap](#roadmap)
+12. [Team and acknowledgements](#team-and-acknowledgements)
+13. [License](#license)
 
 ---
 
@@ -38,6 +39,31 @@ CluckSense turns audio into a **stress score from 0 to 100** and watches that sc
 3. Raise an alert only when high stress is *sustained*, not on single spikes.
 4. Present the result on a simple dashboard that a farmer or reviewer can understand at a glance.
 5. Keep the design light enough to move to a low-cost edge device (ESP32) in the next stage.
+
+## Dataset
+
+CluckSense uses the **Poultry Vocalization Signal Dataset for Early Disease Detection** (Mendeley Data, 2023).
+
+- **DOI:** https://doi.org/10.17632/zp4nf2dxbh.1
+- **Collected at:** Bowen University's Poultry Research Farm, Iwo, Nigeria
+- **Original size:** 346 recordings (139 Healthy, 86 Noise, 121 Unhealthy)
+- **Annotation credit:** audio segmentation and annotation by Segun Adebayo, Halleluyah O. Aworinde, Akinwale O. Akinwunmi, Aderonke B. Sakpere and Abel K. Oyebamiji
+- **License:** CC BY 4.0. Reuse requires attribution to the original authors, a link to the dataset and the license information.
+
+We mapped the original labels to our project classes:
+
+| Original label | CluckSense class |
+|---|---|
+| Healthy | Healthy |
+| Noise | Background_Noise |
+| Unhealthy | Respiratory_Abnormal |
+
+Our processed set has **346 recordings**, converted to 16 kHz for YAMNet.
+| Split | Recordings |
+|---|---|
+| Training | 240 |
+| Validation | 50 |
+| Testing | 55 |
 
 ## How it works
 
@@ -75,7 +101,7 @@ The heavy lifting is done by **YAMNet**, a network already trained on a large au
 
 ### Requirements
 
-- **MATLAB** R2024a or later (MATLAB Online works). The code uses `audioPretrainedNetwork`, which needs a recent release.
+- **MATLAB** R2026b (developed and tested on this release; MATLAB Online works). The code uses `audioPretrainedNetwork`, so R2024a or later is expected to work but has not been tested.
 - **Audio Toolbox** (`yamnetPreprocess`, `audioPretrainedNetwork`)
 - **Deep Learning Toolbox** (`dlarray`, `predict` on a `dlnetwork`)
 - **Statistics and Machine Learning Toolbox** (`ClassificationECOC` prediction)
@@ -127,6 +153,18 @@ The script has a flag, `useFakeScores`, that switches between a synthetic test c
 4. Click **Play demo**. For long timelines the page picks a window of about a minute around the first alert.
 
 ## Implementation details
+
+### Model training (Phase 1)
+
+### Model training (Phase 1)
+
+Each recording is converted to mono, resampled to 16 kHz and cut into short windows. Frozen YAMNet gives a 1,024-value vector per window, and the plain mean of those vectors gives one vector per recording (a 345 x 1,024 feature matrix). Features are standardised with `featureMean` and `featureStd`, computed from the training set only and applied to all three sets. The classifier is a linear SVM (`fitcecoc`, one-vs-one coding, `BoxConstraint = 1`, untuned) with a cost matrix that makes errors on rarer classes count more. The split is 240 / 50 / 55, and the test set was scored once (46 of 55 correct). Training script: [ADD LINK OR FILE NAME].
+
+| Measure | Result |
+|---|---|
+| Validation accuracy | 84.00% |
+| Test accuracy | 83.64% |
+| Test macro-F1 | 82.74% |
 
 ### 1. Feature extraction
 
@@ -201,24 +239,25 @@ On the demo timeline (7 recordings joined, 713 readings), the alert fires during
 - **Not heat stress yet.** The classes are Healthy, Respiratory_Abnormal and Background_Noise. Heat-stress-labelled audio is needed to detect heat stress directly.
 - **The stress score is an index, not a probability.** The SVM has no probability output, and the 0 to 100 scale depends on the softmax setting. The threshold of 70 is a working value.
 - **Windowed scoring is an approximation.** The model was trained on whole-recording vectors, so short-window scores are noisier than the test accuracy suggests.
-- **The demo timeline is simulated.** It is built from separate recordings joined together. Some demo recordings were chosen by ear and are not all from the test split, so the timeline shows how the pipeline behaves and is not evidence of accuracy. Accuracy comes from the test split only.
+- **The demo timeline is simulated.** It is built from seven test-split recordings joined together: noi_16, noi_10 (noise), hea_32, hea_58 (healthy) and unh_12, unh_40, unh_80 (unhealthy). The model had not seen any of them in training, and each one was classified correctly. In the demo the unhealthy recordings read high and the other four read near zero. The order and the joins are staged, so the timeline illustrates how the pipeline behaves. Accuracy comes from the full test split.
 - **Background_Noise precision is lower (0.65).** Other sounds are sometimes mistaken for noise.
+- **Label mapping.** The source dataset labels recordings Healthy, Noise and Unhealthy. We map Unhealthy to Respiratory_Abnormal.
 - **Not real time.** The dashboards replay scores computed beforehand. Live microphone scoring is not implemented.
 
 ## Roadmap
 
 1. Add a replay mode to the MATLAB dashboard that plays audio in step with the curve.
-2. Run a lightweight model on an **ESP32** with real sensor streaming (ThingSpeak becomes useful at this stage).
+2. Build a compact CNN for an **ESP32** (not built yet: the current model is too large for the device's storage) and stream real sensor data (ThingSpeak becomes useful at this stage).
 3. Collect or find audio labelled for heat stress and retrain.
 4. Calibrate the stress score and tune the threshold on real farm data.
 
 ## Team and acknowledgements
 
-- **Team PHAL**: [ADD TEAM MEMBER NAMES AND ROLES]
+- **Team PHAL**: Dr Jibril Bala - Project Supervisor, Muhammed Awwal - Team Lead, Yakubu Abdulrauf Omeiza, Muhammad Akinwunmi Misbahudeen
 - Built at FUT Minna, Nigeria.
 - **YAMNet** is a pretrained audio-event network from Google, used here through MATLAB Audio Toolbox.
-- Dataset: [ADD DATASET SOURCE AND LICENSE]
+- **Dataset:** Poultry Vocalization Signal Dataset for Early Disease Detection, Mendeley Data (2023), https://doi.org/10.17632/zp4nf2dxbh.1. Collected at Bowen University's Poultry Research Farm, Iwo, Nigeria. Segmentation and annotation by Segun Adebayo, Halleluyah O. Aworinde, Akinwale O. Akinwunmi, Aderonke B. Sakpere and Abel K. Oyebamiji. Licensed under CC BY 4.0.
 
 ## License
 
-[ADD LICENSE]
+https://github.com/Damilola40/CluckSense/blob/main/LICENSE
