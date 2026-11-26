@@ -6,7 +6,9 @@ classNames = ["Background_Noise" "Healthy" "Respiratory_Abnormal"];
 targetClass = "Respiratory_Abnormal";
 threshold = 70;  streakLimit = 30;  useFakeScores = false;
 
-predictionsFile = "Phase1_Frozen_YAMNet_SVM_Test_Predictions.csv";
+addpath(genpath(pwd))
+
+predictionsFile = "results/Phase1_Frozen_YAMNet_SVM_Test_Predictions.csv";
 
 if useFakeScores
     readings = [ ...
@@ -33,7 +35,7 @@ if useFakeScores
     scores(:, 2) = (1 - s) / 2;
 
 else
-    S = load('/MATLAB Drive/CluckSense/Phase1_Frozen_YAMNet_SVM_Model.mat');
+    S = load('/MATLAB Drive/CluckSense/models/Phase1_Frozen_YAMNet_SVM_Model.mat');
     net = audioPretrainedNetwork("yamnet");
     folder = "/MATLAB Drive/CluckSense/";
     demoFiles = [ ...
