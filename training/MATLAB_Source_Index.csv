@@ -1,0 +1,38 @@
+File_Name,Original_Path,Suggested_Role
+Step3_Dataset_Splitting.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Dataset\Processed_Audio\Step3_Dataset_Splitting.m,SUPPORTING MATLAB SOURCE
+check1.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Dataset\Processed_Audio\check1.m,SUPPORTING MATLAB SOURCE
+Step1_Load_Audio.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Dataset\Raw_Audio\Step1_Load_Audio.m,SUPPORTING MATLAB SOURCE
+Step2B_Check_Missing_Audio.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Dataset\Raw_Audio\Step2B_Check_Missing_Audio.m,SUPPORTING MATLAB SOURCE
+Step2_Resample_Audio.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Dataset\Raw_Audio\Step2_Resample_Audio.m,SUPPORTING MATLAB SOURCE
+Step4A_Check_Paths.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step4A_Check_Paths.m,SUPPORTING MATLAB SOURCE
+Step4B_Verify_Feature_Files.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step4B_Verify_Feature_Files.m,SUPPORTING MATLAB SOURCE
+Step4_Feature_Extraction.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step4_Feature_Extraction.m,SUPPORTING MATLAB SOURCE
+Step5A_Test_Original_YAMNet.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step5A_Test_Original_YAMNet.m,SUPPORTING MATLAB SOURCE
+Step5C_Audio_Duration_Analysis.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step5C_Audio_Duration_Analysis.m,SUPPORTING MATLAB SOURCE
+Step5D_Check_Duration_Split_Assignments.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step5D_Check_Duration_Split_Assignments.m,SUPPORTING MATLAB SOURCE
+Step5E_Evaluate_Original_YAMNet.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step5E_Evaluate_Original_YAMNet.m,EVALUATION / PREDICTION / COMPARISON SCRIPT
+Step5F_Test_YAMNet_Embeddings.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step5F_Test_YAMNet_Embeddings.m,SUPPORTING MATLAB SOURCE
+Step5G_Extract_Frozen_YAMNet_Embeddings.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step5G_Extract_Frozen_YAMNet_Embeddings.m,PRIMARY FEATURE EXTRACTION SCRIPT
+Step5H_Train_Frozen_YAMNet_Classifier.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step5H_Train_Frozen_YAMNet_Classifier.m,PRIMARY SVM TRAINING SCRIPT
+Step6A_Inspect_YAMNet_Architecture.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step6A_Inspect_YAMNet_Architecture.m,SUPPORTING MATLAB SOURCE
+Step6B_Prepare_FineTuning_Data.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step6B_Prepare_FineTuning_Data.m,SUPPORTING MATLAB SOURCE
+Step6C_Create_ThreeClass_YAMNet.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step6C_Create_ThreeClass_YAMNet.m,SUPPORTING MATLAB SOURCE
+Step6D_Initialize_ThreeClass_YAMNet.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step6D_Initialize_ThreeClass_YAMNet.m,SUPPORTING MATLAB SOURCE
+Step6E_Test_ThreeClass_YAMNet.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step6E_Test_ThreeClass_YAMNet.m,SUPPORTING MATLAB SOURCE
+Step6F_Inspect_Training_Setup.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step6F_Inspect_Training_Setup.m,SUPPORTING MATLAB SOURCE
+Step6G_Test_Training_Gradient.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step6G_Test_Training_Gradient.m,SUPPORTING MATLAB SOURCE
+Step6H_Train_Frozen_YAMNet_Head.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step6H_Train_Frozen_YAMNet_Head.m,SUPPORTING MATLAB SOURCE
+Step6I_Inspect_FineTuning_Layers.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step6I_Inspect_FineTuning_Layers.m,SUPPORTING MATLAB SOURCE
+Step6J_Test_Selective_Gradients.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step6J_Test_Selective_Gradients.m,SUPPORTING MATLAB SOURCE
+Step6K_Test_Selective_Weight_Update.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step6K_Test_Selective_Weight_Update.m,SUPPORTING MATLAB SOURCE
+Step6L_Inspect_FineTuning_Readiness.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step6L_Inspect_FineTuning_Readiness.m,SUPPORTING MATLAB SOURCE
+Step6M_Verify_Best_Checkpoint.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step6M_Verify_Best_Checkpoint.m,SUPPORTING MATLAB SOURCE
+Step6N_Inspect_Checkpoint_History.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step6N_Inspect_Checkpoint_History.m,SUPPORTING MATLAB SOURCE
+Step6O_Inspect_Learnable_Parameters.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step6O_Inspect_Learnable_Parameters.m,SUPPORTING MATLAB SOURCE
+Step6S_Test_Temporary_Minibatch_Update.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step6S_Test_Temporary_Minibatch_Update.m,SUPPORTING MATLAB SOURCE
+Step6T_Train_Selective_FineTuned_YAMNet.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step6T_Train_Selective_FineTuned_YAMNet.m,SUPPORTING MATLAB SOURCE
+Step6UA_Inspect_Model_Comparison_Files.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step6UA_Inspect_Model_Comparison_Files.m,SUPPORTING MATLAB SOURCE
+Step6UB_Inspect_Embedding_And_SVM.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step6UB_Inspect_Embedding_And_SVM.m,SUPPORTING MATLAB SOURCE
+Step6UC_Compare_Three_YAMNet_Models.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step6UC_Compare_Three_YAMNet_Models.m,EVALUATION / PREDICTION / COMPARISON SCRIPT
+Step8A_Test_10Second_Audio_Inference.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step8A_Test_10Second_Audio_Inference.m,SUPPORTING MATLAB SOURCE
+Step9A_Export_Train_Test_Predictions.m,C:\Users\abdul\Desktop\CluckSense_Smart_Poultry\Scripts\Step9A_Export_Train_Test_Predictions.m,EVALUATION / PREDICTION / COMPARISON SCRIPT
