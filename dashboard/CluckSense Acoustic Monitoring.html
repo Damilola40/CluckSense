@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CluckSense Acoustic Monitoring</title>
+<style>
+:root{
+  --bg:#eef2f7;--card:#fff;--ink:#11243e;--mute:#6b7a90;--line:#e2e8f0;--side:#11243e;--sideInk:#c7d2e0;
+  --active:#1f5870;--teal:#0f8080;--red:#d94f3d;--amber:#e08a1e;--grid:#e8edf3;--chat:#e5ddd5;--bubble:#fff;--pill:#e2e8f0;--track:#e2e8f0;
+  color-scheme:light;box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0c1624;--card:#142238;--ink:#e6edf5;--mute:#93a3b8;--line:#243449;--side:#08111d;--sideInk:#aebbd0;
+    --active:#1f5870;--teal:#2bb3b3;--red:#ff7a66;--amber:#f0a03a;--grid:#243449;--chat:#1b2a30;--bubble:#22343d;--pill:#243449;--track:#243449;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0c1624;--card:#142238;--ink:#e6edf5;--mute:#93a3b8;--line:#243449;--side:#08111d;--sideInk:#aebbd0;
+  --active:#1f5870;--teal:#2bb3b3;--red:#ff7a66;--amber:#f0a03a;--grid:#243449;--chat:#1b2a30;--bubble:#22343d;--pill:#243449;--track:#243449;color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.app{display:grid;grid-template-columns:210px minmax(0,1fr) 290px;min-height:100vh}
+.side{background:var(--side);color:var(--sideInk);padding:22px 14px}
+.brand{color:#fff;font-weight:800;font-size:20px;letter-spacing:.5px;padding:0 10px}
+.team{font-size:11px;padding:2px 10px 22px;letter-spacing:.5px}
+.nav{display:flex;flex-direction:column;gap:4px}
+.nav span{padding:10px;border-radius:9px;font-size:14px}
+.nav .on{background:var(--active);color:#fff}
+main{padding:22px 22px 26px;min-width:0}
+.head{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+h2{margin:0;font-size:26px}
+.pill{background:var(--pill);color:var(--mute);font-size:11px;font-weight:700;letter-spacing:1px;padding:7px 14px;border-radius:99px}
+.sub{color:var(--mute);font-size:13px;margin:4px 0 14px}
+.row{display:grid;grid-template-columns:1fr 1.3fr;gap:12px;margin-bottom:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.lab{font-size:11px;color:var(--mute)}
+.big{font-size:32px;font-weight:800;color:var(--teal);margin-top:4px}
+.big small{font-size:13px;margin-left:10px;letter-spacing:.5px}
+.pers{display:flex;align-items:center;gap:12px;margin-top:14px}
+.track{flex:1;height:18px;border-radius:99px;background:var(--track);overflow:hidden}
+.fill{height:100%;width:0;background:var(--amber);border-radius:99px}
+.time{font-weight:700;font-size:15px;min-width:38px;text-align:right}
+.ct{font-weight:700;font-size:14px}
+svg{width:100%;height:auto;display:block}
+.tick{font-size:11px;fill:var(--mute)}
+.thr{font-size:11px;font-weight:700;fill:var(--red)}
+.bars{display:flex;align-items:center;justify-content:space-between;height:44px;margin-top:6px}
+.bars i{display:block;width:4px;border-radius:2px;background:var(--teal)}
+.note{color:var(--mute);font-size:13px;font-weight:700;margin:12px 2px}
+.ctl{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+button,.file{font:inherit;font-size:13px;font-weight:600;padding:9px 16px;border-radius:9px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+button.go{background:var(--teal);border-color:var(--teal);color:#fff}
+.file input{display:none}
+.phoneWrap{padding:22px 22px 22px 0}
+.phone{background:#1c1f26;border-radius:34px;padding:10px;height:540px;max-width:290px}
+.scr{height:100%;border-radius:26px;overflow:hidden;background:var(--chat);display:flex;flex-direction:column}
+.ph{background:#02514f;color:#fff;padding:12px 14px;display:flex;gap:10px;align-items:center}
+.av{width:34px;height:34px;border-radius:50%;background:#0f8080;display:grid;place-items:center;font-weight:700}
+.ph b{font-size:14px;display:block}.ph small{font-size:11px;opacity:.8}
+.chat{flex:1;padding:12px;display:flex;flex-direction:column;gap:10px;overflow:auto}
+.today{align-self:center;background:var(--bubble);color:var(--mute);font-size:11px;padding:4px 12px;border-radius:99px}
+.none{margin:auto 0;color:var(--mute);font-size:13px;padding:0 8px}
+.bub{background:var(--bubble);color:var(--ink);border-radius:4px 14px 14px 14px;padding:10px 12px;font-size:13px;line-height:1.45}
+.bub span{display:block;text-align:right;font-size:10px;color:var(--mute);margin-top:4px}
+@media (max-width:980px){
+  .app{grid-template-columns:1fr}
+  .side{padding:14px 16px}.team{padding-bottom:10px}
+  .nav{flex-direction:row;overflow-x:auto}.nav span{white-space:nowrap}
+  .phoneWrap{padding:0 22px 26px}.phone{margin:0 auto}
+}
+@media (max-width:560px){.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand">CLUCKSENSE</div><div class="team">TEAM PHAL</div>
+    <div class="nav"><span>Overview</span><span class="on">Acoustic Monitoring</span><span>Environment</span><span>Alerts &amp; Events</span><span>Smart Control</span><span>AI Performance</span></div>
+  </aside>
+  <main>
+    <div class="head"><h2>Acoustic Monitoring</h2><span class="pill">SIMULATED DEMO</span></div>
+    <div class="sub" id="sub">Simulated timeline, synthetic audio</div>
+    <div class="row">
+      <div class="card"><div class="lab">Model-estimated risk</div><div class="big" id="risk">22%<small id="lvl">LOW</small></div></div>
+      <div class="card"><div class="lab">Persistence (score above 70%)</div>
+        <div class="pers"><div class="track"><div class="fill" id="fill"></div></div><div class="time" id="ptime">0:00</div></div></div>
+    </div>
+    <div class="card"><div class="ct">Acoustic risk score (%)</div><svg id="svg" viewBox="0 0 700 250" role="img" aria-label="Acoustic risk score over time"></svg></div>
+    <div class="card" style="margin-top:12px"><div class="lab">Audio level</div><div class="bars" id="bars"></div></div>
+    <div class="note">Alert fires only if the score stays high</div>
+    <div class="ctl">
+      <button class="go" id="play">&#9654; Play demo</button>
+      <button id="reset">Reset</button>
+      <label class="file">Choose chicken audio (optional)<input type="file" id="aud" accept="audio/*"></label>
+      <label class="file">Load stress CSV<input type="file" id="csv" accept=".csv,.txt,text/csv,text/plain"></label>
+    </div>
+  </main>
+  <div class="phoneWrap">
+    <div class="phone"><div class="scr">
+      <div class="ph"><div class="av">C</div><div><b>CluckSense Alerts</b><small>Pen 2 | online</small></div></div>
+      <div class="chat" id="chat" aria-live="polite"><div class="today">Today</div><div class="none" id="none">No new alerts</div></div>
+    </div></div>
+  </div>
+</div>
+<script>
+(function(){
+  var READ=0.48, THR=70, STREAK=14.4, N=135;
+  function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+  var rnd=rng(7), scores=[];
+  for(var i=0;i<N;i++){
+    var t=i*READ, b=24+3*Math.sin(t*0.5);
+    b+=58*Math.exp(-Math.pow((t-18)/1.6,2));             // brief spike: too short to alert
+    b+=Math.max(0,Math.min(1,(t-30)/10))*62;             // sustained rise from about 30 s
+    scores.push(Math.max(2,Math.min(99,b+(rnd()-0.5)*5)));
+  }
+  var X0=44,X1=692,Y0=12,Y1=228;
+  function X(i){return X0+i/(N-1)*(X1-X0)}
+  function Y(v){return Y1-v/100*(Y1-Y0)}
+  var svg=document.getElementById('svg'), g='';
+  [0,25,50,75,100].forEach(function(v){
+    g+='<line x1="'+X0+'" x2="'+X1+'" y1="'+Y(v)+'" y2="'+Y(v)+'" stroke="var(--grid)"/><text class="tick" x="'+(X0-8)+'" y="'+(Y(v)+4)+'" text-anchor="end">'+v+'</text>';
+  });
+  g+='<line x1="'+X0+'" x2="'+X1+'" y1="'+Y(THR)+'" y2="'+Y(THR)+'" stroke="var(--red)" stroke-width="1.5" stroke-dasharray="6 5"/><text class="thr" x="'+(X1-4)+'" y="'+(Y(THR)-6)+'" text-anchor="end">Threshold 70%</text>';
+  g+='<polyline id="ln" fill="none" stroke="var(--teal)" stroke-width="2.2" stroke-linejoin="round"/><circle id="hd" r="5" fill="var(--teal)"/>';
+  svg.innerHTML=g;
+  var ln=document.getElementById('ln'), hd=document.getElementById('hd');
+  var barsEl=document.getElementById('bars'), NB=56, bars=[], hs=[];
+  for(var k=0;k<NB;k++){var e=document.createElement('i');barsEl.appendChild(e);bars.push(e);hs.push(8)}
+  function paintBars(){for(var k=0;k<NB;k++)bars[k].style.height=hs[k]+'px'}
+  var riskEl=document.getElementById('risk'), fill=document.getElementById('fill'), ptime=document.getElementById('ptime');
+  var chat=document.getElementById('chat'), none=document.getElementById('none'), sub=document.getElementById('sub');
+  var idx=0, persist=0, alerted=false, running=false, t0=0, raf=0, audio=null, url=null, brnd=rng(99);
+  function fmt(s){s=Math.floor(s);return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2)}
+  function draw(){
+    var pts=[];for(var k=0;k<=idx;k++)pts.push(X(k).toFixed(1)+','+Y(scores[k]).toFixed(1));
+    ln.setAttribute('points',pts.join(' '));
+    hd.setAttribute('cx',X(idx));hd.setAttribute('cy',Y(scores[idx]));
+    var s=scores[idx], hi=s>=THR, mid=s>=50&&!hi, col=hi?'var(--red)':(mid?'var(--amber)':'var(--teal)');
+    hd.setAttribute('fill',col);
+    riskEl.style.color=col;
+    riskEl.innerHTML=Math.round(s)+'%<small>'+(hi?'HIGH':(mid?'MODERATE':'LOW'))+'</small>';
+    fill.style.width=Math.min(1,persist/STREAK)*100+'%';
+    ptime.textContent=fmt(persist);
+  }
+  function step(){
+    var s=scores[idx];
+    persist=s>THR?persist+READ:0;
+    hs.shift();hs.push(6+s*0.34*(0.45+brnd()*0.9));paintBars();
+    if(!alerted&&persist>=STREAK){alerted=true;fire(s)}
+    draw();
+  }
+  function fire(s){
+    none.hidden=true;
+    var tm=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+    chat.insertAdjacentHTML('beforeend','<div class="bub"><b>&#9888; CluckSense alert | Pen 2</b><br>Sustained respiratory stress detected: risk '+Math.round(s)+'% for '+fmt(STREAK)+'.<br>Please check ventilation.<span>'+tm+'</span></div>');
+  }
+  function loop(ts){
+    if(!running)return;
+    var target=Math.min(N-1,Math.floor((ts-t0)/1000/READ));
+    while(idx<target){idx++;step()}
+    if(idx>=N-1){running=false;if(audio)audio.pause();return}
+    raf=requestAnimationFrame(loop);
+  }
+  function reset(){
+    running=false;cancelAnimationFrame(raf);
+    if(audio){audio.pause();audio.currentTime=0}
+    idx=0;persist=0;alerted=false;
+    for(var k=0;k<NB;k++)hs[k]=8;paintBars();
+    var old=chat.querySelectorAll('.bub');for(var q=0;q<old.length;q++)old[q].remove();
+    none.hidden=false;draw();
+  }
+  document.getElementById('play').addEventListener('click',function(){
+    reset();running=true;t0=performance.now();
+    if(audio){audio.loop=true;audio.play().catch(function(){})}
+    raf=requestAnimationFrame(loop);
+  });
+  document.getElementById('reset').addEventListener('click',reset);
+  document.getElementById('aud').addEventListener('change',function(ev){
+    var f=ev.target.files[0];if(!f)return;
+    if(audio)audio.pause();
+    if(url)URL.revokeObjectURL(url);
+    url=URL.createObjectURL(f);audio=new Audio(url);
+    sub.textContent='Simulated timeline, audio: '+f.name;
+  });
+  document.getElementById('csv').addEventListener('change',function(ev){
+    var f=ev.target.files[0];if(!f)return;
+    var rd=new FileReader();
+    rd.onload=function(){
+      var v=String(rd.result).split(/[\s,;]+/).map(parseFloat).filter(function(x){return isFinite(x)});
+      if(v.length<20){sub.textContent='Could not read enough numbers from '+f.name;return}
+      var mx=Math.max.apply(null,v);
+      if(mx<=1.5)v=v.map(function(x){return x*100});
+      v=v.map(function(x){return Math.max(0,Math.min(100,x))});
+      var need=Math.round(STREAK/READ), run=0, a=-1;
+      for(var k=0;k<v.length;k++){run=v[k]>THR?run+1:0;if(run>=need){a=k;break}}
+      var s0=0,e0=v.length;
+      if(v.length>190){
+        if(a>=0){s0=Math.max(0,a-need+1-50);e0=Math.min(v.length,a+41)}else{e0=150}
+      }
+      scores=v.slice(s0,e0);N=scores.length;
+      sub.textContent='Simulated timeline, model scores from MATLAB (readings '+(s0+1)+' to '+e0+' of '+v.length+')';
+      reset();
+    };
+    rd.readAsText(f);
+  });
+  reset();
+})();
+</script>
+</body>
+</html>
