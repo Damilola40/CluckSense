@@ -158,7 +158,7 @@ The script has a flag, `useFakeScores`, that switches between a synthetic test c
 
 ### Model training (Phase 1)
 
-Each recording is converted to mono, resampled to 16 kHz and cut into short windows. Frozen YAMNet gives a 1,024-value vector per window, and the plain mean of those vectors gives one vector per recording (a 345 x 1,024 feature matrix). Features are standardised with `featureMean` and `featureStd`, computed from the training set only and applied to all three sets. The classifier is a linear SVM (`fitcecoc`, one-vs-one coding, `BoxConstraint = 1`, untuned) with a cost matrix that makes errors on rarer classes count more. The split is 240 / 50 / 55, and the test set was scored once (46 of 55 correct). Training script: [ADD LINK OR FILE NAME].
+Each recording is converted to mono, resampled to 16 kHz and cut into short windows. Frozen YAMNet gives a 1,024-value vector per window, and the plain mean of those vectors gives one vector per recording (a 345 x 1,024 feature matrix). Features are standardised with `featureMean` and `featureStd`, computed from the training set only and applied to all three sets. The classifier is a linear SVM (`fitcecoc`, one-vs-one coding, `BoxConstraint = 1`, untuned) with a cost matrix that makes errors on rarer classes count more. The split is 240 / 50 / 55, and the test set was scored once (46 of 55 correct). Training scripts: `training/Step5G_Extract_Frozen_YAMNet_Embeddings.m` (feature extraction) and `training/Step5H_Train_Frozen_YAMNet_Classifier.m` (SVM training).
 
 | Measure | Result |
 |---|---|
