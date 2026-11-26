@@ -1,0 +1,42 @@
+Copied_File,Category
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Dataset\Processed_Audio\Step3_Dataset_Splitting.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Dataset\Processed_Audio\check1.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Dataset\Raw_Audio\Step1_Load_Audio.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Dataset\Raw_Audio\Step2B_Check_Missing_Audio.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Dataset\Raw_Audio\Step2_Resample_Audio.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step4A_Check_Paths.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step4B_Verify_Feature_Files.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step4_Feature_Extraction.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step5A_Test_Original_YAMNet.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step5C_Audio_Duration_Analysis.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step5D_Check_Duration_Split_Assignments.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step5E_Evaluate_Original_YAMNet.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step5F_Test_YAMNet_Embeddings.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step5G_Extract_Frozen_YAMNet_Embeddings.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step5H_Train_Frozen_YAMNet_Classifier.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step6A_Inspect_YAMNet_Architecture.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step6B_Prepare_FineTuning_Data.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step6C_Create_ThreeClass_YAMNet.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step6D_Initialize_ThreeClass_YAMNet.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step6E_Test_ThreeClass_YAMNet.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step6F_Inspect_Training_Setup.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step6G_Test_Training_Gradient.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step6H_Train_Frozen_YAMNet_Head.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step6I_Inspect_FineTuning_Layers.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step6J_Test_Selective_Gradients.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step6K_Test_Selective_Weight_Update.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step6L_Inspect_FineTuning_Readiness.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step6M_Verify_Best_Checkpoint.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step6N_Inspect_Checkpoint_History.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step6O_Inspect_Learnable_Parameters.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step6S_Test_Temporary_Minibatch_Update.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step6T_Train_Selective_FineTuned_YAMNet.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step6UA_Inspect_Model_Comparison_Files.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step6UB_Inspect_Embedding_And_SVM.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step6UC_Compare_Three_YAMNet_Models.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step8A_Test_10Second_Audio_Inference.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\01_SOURCE_CODE\Scripts\Step9A_Export_Train_Test_Predictions.m,MATLAB source
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\02_FINAL_MODEL\Phase1_Frozen_YAMNet_SVM_Model.mat,Final SVM model
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\03_TEST_PREDICTIONS\Frozen_YAMNet_Test_Predictions.csv,Test prediction CSV
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\03_TEST_PREDICTIONS\Phase1_Frozen_YAMNet_SVM_Test_Predictions.csv,Test prediction CSV
+C:\Users\abdul\Desktop\CluckSense_GitHub_Model_Handoff\04_FEATURE_MATRIX\Frozen_YAMNet_Embeddings.mat,MAT feature-matrix candidate
