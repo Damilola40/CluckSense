@@ -83,19 +83,18 @@ The heavy lifting is done by **YAMNet**, a network already trained on a large au
 
 ## Repository structure
 
-| File or folder | Purpose |
+| Path | Purpose |
 |---|---|
 | `runCluckSense.m` | Main script: scores audio, computes stress, runs the alert logic, evaluates the model, opens the dashboard |
-| `stressFromScores.m` | Converts class scores into a stress value for the target class |
-| `stressMonitor.m` | Counts consecutive high readings and raises alerts |
-| `plotStress.m` | Plots the stress curve with the threshold and alert markers |
-| `loadAndEvaluate.m` | Reads the predictions CSV and reports accuracy, recall and precision |
-| `evaluateModel.m` | Model evaluation helper |
-| `CluckSenseDashboard.m` | MATLAB dashboard (curve, alert lamp, gauge, metrics, confusion matrix) |
-| `clucksense_dashboard.html` | Browser dashboard for demos: replays a timeline, optional audio, can load a stress CSV exported from MATLAB |
-| `Phase1_Frozen_YAMNet_SVM_Model.mat` | Saved model: `classifier`, `featureMean`, `featureStd`, `classOrder`, `embeddingLayer`, `embeddingDimension` |
-| `Phase1_Frozen_YAMNet_SVM_Test_Predictions.csv` | True and predicted class for every test recording |
-| `demofiles/` | Recordings used to build the demo timeline |
+| `src/` | Functions used by the main script: `stressFromScores.m`, `stressMonitor.m`, `plotStress.m`, `loadAndEvaluate.m`, `evaluateModel.m` |
+| `dashboard/` | `CluckSenseDashboard.m` (MATLAB dashboard) and `clucksense_dashboard.html` (browser demo dashboard) |
+| `models/` | `Phase1_Frozen_YAMNet_SVM_Model.mat`: the saved classifier, `featureMean`, `featureStd` and class order |
+| `results/` | `Phase1_Frozen_YAMNet_SVM_Test_Predictions.csv`: true and predicted class for each test recording |
+| `training/` | Scripts that built the model, including `Step5G_Extract_Frozen_YAMNet_Embeddings.m` and `Step5H_Train_Frozen_YAMNet_Classifier.m` |
+| `features/` | The 345 x 1,024 YAMNet feature matrix used to train the classifier |
+| `demofiles/` | Test-split recordings used to build the demo timeline |
+| `docs/` | Model handoff notes and project learning notes |
+| `LICENSE` | MIT license |
 
 ## Installation
 
